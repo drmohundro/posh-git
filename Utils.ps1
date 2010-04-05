@@ -20,7 +20,7 @@ function Test-LocalOrParentPath($path) {
     $done = $false
     do {
         if (Test-Path $path) { return $true }
-        if (Test-Path ..) { return $false }
+        if (-not (Test-Path ..)) { return $false }
         $path = "..\$path"
     } while (!$done)
     return $false
